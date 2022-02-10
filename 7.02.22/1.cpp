@@ -14,7 +14,7 @@ int max2(int p1, int p2) {
     }
     }
 int main() {
-    int max = -2147483648;
+    int max = 0;
     int p=1;
     while (p != 0) {
         cin >> p;
