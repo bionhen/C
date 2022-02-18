@@ -79,11 +79,6 @@ int process(int area[], int a) {
     int c = count(area, a);
     while (c != 0) {
         move(area, a);
-        //for (int i = 0; i < a * a; i++) {
-            //cout << area[i];
-            //if (i % a == a - 1) { cout << '\n'; }
-        //}
-        //cout << '\n';
         c = count(area, a);
         i++;
     }
@@ -106,9 +101,32 @@ int one_a_vs_time() {
     return 0;
 }
 
+int two_alpha_dislocation_vs_time() {
+    int c = 0, n = 0, sum = 0, time = 0;
+    float mean = 0;
+    for (n = 1; n < 400; n++) {
+        sum = 0;
+        for (int j = 0; j < 10000; j++) {
+            int area[3600] = { 0 };
+            creation(area, n, 20);
+            time = process(area, 20);
+            sum += time;
+        }
+        mean = sum / 10000.0;
+        cout << mean << " " << '\n';
+    }
+    return 0;
+}
 
 int main() {
+    int number = 0;
     srand(static_cast<unsigned int>(time(0)));
-    one_a_vs_time();
+    cin >> number;
+    if (number == 1) {
+        one_a_vs_time();
+    }
+    if (number == 2) {
+        two_alpha_dislocation_vs_time();
+    }
     return 0;
 }
