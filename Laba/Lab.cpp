@@ -26,24 +26,26 @@ int move(int area[], int a) {
         if (area[i] == 1) {
             if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
                 area[i] = 3;
-            else { area[i] = 1; }
         }
     }
     for (int i = 0; i < a * a; i++) {
         if (area[i] == 1) {
-            area[i] = 0;
             int step = random(4);
             if (step == 0 && area[i + 1] == 0) {
                 area[i + 1] = 2;
+                area[i] = 0;
             }
             if (step == 1 && area[i + a] == 0) {
                 area[i + a] = 2;
+                area[i] = 0;
             }
             if (step == 2 && area[i - a] == 0) {
                 area[i - a] = 2;
+                area[i] = 0;
             }
             if (step == 3 && area[i - 1] == 0) {
                 area[i - 1] = 2;
+                area[i] = 0;
             }
         }
     }
