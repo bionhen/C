@@ -11,7 +11,7 @@ int random(int div) {
 
 int creation(int area[], int n, int a, int sign) {
     int count = 0;
-    if (sign % 5 < 3) {
+    if (sign < 3) {
         while (count < n) {
             int b = random(a * a);
             if (area[b] == 0) {
@@ -33,7 +33,7 @@ int creation(int area[], int n, int a, int sign) {
 }
 
 int move(int area[], int a, int sign) {
-    if (sign%5<3) {
+    if (sign < 3) {
         for (int i = 0; i < a * a; i++) {
             if (area[i] == 1) {
                 if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
@@ -117,7 +117,7 @@ int move(int area[], int a, int sign) {
 
 int count(int area[], int a, int sign) {
     int c = 0;
-    if (sign % 5 < 3) {
+    if (sign < 3) {
         for (int i = 0; i < a * a; i++) {
             if (area[i] == 1) {
                 c++;
@@ -144,8 +144,9 @@ int process(int area[], int a, int sign) {
     }
     return i;
 }
+
 int one_a_vs_time(int sign) {
-    int a = 0, c = 0, i = 0, sum = 0;
+    int a = 0, i = 0, sum = 0;
     float mean = 0;
     for (a = 2; a < 60; a++) {
         sum = 0;
@@ -161,14 +162,16 @@ int one_a_vs_time(int sign) {
     return 0;
 }
 
-int two_alpha_dislocation_vs_time(int sign) {
-    int c = 0, n = 0, sum = 0, time = 0;
+int two_alpha_dislocation_vs_time(int sign, int n) {
+    int sum = 0, time = 0, ar = 0;
     float mean = 0;
-    for (n = 1; n < 400; n++) {
+    if (sign < 3){ar = n*n;}
+    else {ar = n;}
+    for (int k = 1; k < ar; k++) {
         sum = 0;
         for (int j = 0; j < 10000; j++) {
             int area[3600] = { 0 };
-            creation(area, n, 20, sign);
+            creation(area, k, 20, sign);
             time = process(area, 20, sign);
             sum += time;
         }
@@ -179,20 +182,22 @@ int two_alpha_dislocation_vs_time(int sign) {
 }
 
 int main() {
-    int number = 0;
+    int number = 0, n = 0;
     srand(static_cast<unsigned int>(time(0)));
     cin >> number;
     if (number == 1) {
         one_a_vs_time(number);
     }
     if (number == 2) {
-        two_alpha_dislocation_vs_time(number);
+        cin >> n;
+        two_alpha_dislocation_vs_time(number, n);
     }
     if (number == 3) {
         one_a_vs_time(number);
     }
     if (number == 4) {
-        two_alpha_dislocation_vs_time(number);
+        cin >> n;
+        two_alpha_dislocation_vs_time(number, n);
     }
     return 0;
 }
