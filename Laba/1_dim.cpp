@@ -22,7 +22,7 @@ int creation(int area[], int n, int a) {
 }
 
 int move(int area[], int a) {
-    for (int i = 0; i < a * a; i++) {
+    for (int i = 0; i < a; i++) {
         if (area[i] == 1) {
             if (i == 0 || i == a - 1)
                 area[i] = 3;
@@ -79,7 +79,7 @@ int process(int area[], int a) {
     return i;
 }
 int one_a_vs_time() {
-    int a = 0, c = 0, i = 0, sum = 0;
+    int a = 0, i = 0, sum = 0;
     float mean = 0;
     for (a = 2; a < 200; a++) {
         sum = 0;
@@ -96,7 +96,7 @@ int one_a_vs_time() {
 }
 
 int two_alpha_dislocation_vs_time() {
-    int c = 0, n = 0, sum = 0, time = 0;
+    int n = 0, sum = 0, time = 0;
     float mean = 0;
     for (n = 1; n < 50; n++) {
         sum = 0;

@@ -87,7 +87,7 @@ int process(int area[], int a) {
     return i;
 }
 int one_a_vs_time() {
-    int a = 0, c = 0, i = 0, sum = 0;
+    int a = 0, i = 0, sum = 0;
     float mean = 0;
     for (a = 2; a < 60; a++) {
         sum = 0;
@@ -104,7 +104,7 @@ int one_a_vs_time() {
 }
 
 int two_alpha_dislocation_vs_time() {
-    int c = 0, n = 0, sum = 0, time = 0;
+    int n = 0, sum = 0, time = 0;
     float mean = 0;
     for (n = 1; n < 400; n++) {
         sum = 0;
