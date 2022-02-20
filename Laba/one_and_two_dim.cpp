@@ -11,7 +11,7 @@ int random(int div) {
 
 int creation(int area[], int n, int a, int sign) {
     int count = 0;
-    if (sign < 3) {
+    if (sign < 3) { // создание массива для двумерного случая
         while (count < n) {
             int b = random(a * a);
             if (area[b] == 0) {
@@ -20,7 +20,7 @@ int creation(int area[], int n, int a, int sign) {
             }
         }
     }
-    else{
+    else{ // создание массива для одномерного случая
         while (count < n) {
             int b = random(a);
             if (area[b] == 0) {
@@ -33,7 +33,7 @@ int creation(int area[], int n, int a, int sign) {
 }
 
 int move(int area[], int a, int sign) {
-    if (sign < 3) {
+    if (sign < 3) { // движение для двумерного случая
         for (int i = 0; i < a * a; i++) {
             if (area[i] == 1) {
                 if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
@@ -77,7 +77,7 @@ int move(int area[], int a, int sign) {
         }
         return 0;
     }
-    else {
+    else { // движение для одномерного случая
         for (int i = 0; i < a; i++) {
             if (area[i] == 1) {
                 if (i == 0 || i == a - 1)
@@ -117,14 +117,14 @@ int move(int area[], int a, int sign) {
 
 int count(int area[], int a, int sign) {
     int c = 0;
-    if (sign < 3) {
+    if (sign < 3) { // подсчет количества движущихся элементов для двумерного случая
         for (int i = 0; i < a * a; i++) {
             if (area[i] == 1) {
                 c++;
             }
         }
     }
-    else {
+    else { // подсчет количества движущихся элементов для одномерного случая
         for (int i = 0; i < a; i++) {
             if (area[i] == 1) {
                 c++;
@@ -171,8 +171,8 @@ int two_alpha_dislocation_vs_time(int sign, int n) {
         sum = 0;
         for (int j = 0; j < 10000; j++) {
             int area[3600] = { 0 };
-            creation(area, k, 20, sign);
-            time = process(area, 20, sign);
+            creation(area, k, n, sign);
+            time = process(area, n, sign);
             sum += time;
         }
         mean = sum / 10000.0;
