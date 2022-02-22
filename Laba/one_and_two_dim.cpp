@@ -64,7 +64,8 @@ int move(int area[], int a, int sign) {
             if (area[i] == 2) {
                 if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
                     area[i] = 3;
-                else { area[i] = 1; }
+                else { area[i] = 1;
+                }
             }
         }
         for (int i = 0; i < a * a; i++) {
