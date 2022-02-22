@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-
 using namespace std;
 
 int random(int div) {
@@ -75,7 +74,6 @@ int move(int area[], int a, int sign) {
                 }
             }
         }
-        return 0;
     }
     else { // движение для одномерного случая
         for (int i = 0; i < a; i++) {
@@ -111,22 +109,22 @@ int move(int area[], int a, int sign) {
                 }
             }
         }
-        return 0;
     }
+    return 0;
 }
 
-int count(int area[], int a, int sign) {
+int count(int arr[], int a, int sign) {
     int c = 0;
     if (sign < 3) { // подсчет количества движущихся элементов для двумерного случая
         for (int i = 0; i < a * a; i++) {
-            if (area[i] == 1) {
+            if (arr[i] == 1) {
                 c++;
             }
         }
     }
     else { // подсчет количества движущихся элементов для одномерного случая
         for (int i = 0; i < a; i++) {
-            if (area[i] == 1) {
+            if (arr[i] == 1) {
                 c++;
             }
         }
@@ -146,36 +144,38 @@ int process(int area[], int a, int sign) {
 }
 
 int one_a_vs_time(int sign) {
+    const int AVM = 10000;
     int a = 0, i = 0, sum = 0;
-    float mean = 0;
+    double mean = 0;
     for (a = 2; a < 60; a++) {
         sum = 0;
-        for (int j = 0; j < 10000; j++) {
+        for (int j = 0; j < AVM; j++) {
             int area[3600] = { 0 };
             creation(area, 1, a, sign);
             i = process(area, a, sign);
             sum += i;
         }
-        mean = sum / 10000.0;
+        mean = sum * 1.0 / AVM;
         cout << mean << " " << '\n';
     }
     return 0;
 }
 
 int two_alpha_dislocation_vs_time(int sign, int n) {
+    const int AVM = 10000;
     int sum = 0, time = 0, ar = 0;
-    float mean = 0;
+    double mean = 0;
     if (sign < 3){ar = n*n;}
     else {ar = n;}
     for (int k = 1; k < ar; k++) {
         sum = 0;
-        for (int j = 0; j < 10000; j++) {
+        for (int j = 0; j < AVM; j++) {
             int area[3600] = { 0 };
             creation(area, k, n, sign);
             time = process(area, n, sign);
             sum += time;
         }
-        mean = sum / 10000.0;
+        mean = sum * 1.0 / AVM;
         cout << mean << " " << '\n';
     }
     return 0;
