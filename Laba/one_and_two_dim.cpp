@@ -144,38 +144,38 @@ int process(int area[], int a, int sign) {
 }
 
 int one_a_vs_time(int sign) {
-    const int AVM = 10000;
+    const int N_of_average = 10000;
     int a = 0, i = 0, sum = 0;
     double mean = 0;
     for (a = 2; a < 60; a++) {
         sum = 0;
-        for (int j = 0; j < AVM; j++) {
+        for (int j = 0; j < N_of_average; j++) {
             int area[3600] = { 0 };
             creation(area, 1, a, sign);
             i = process(area, a, sign);
             sum += i;
         }
-        mean = sum * 1.0 / AVM;
+        mean = sum * 1.0 / N_of_average;
         cout << mean << " " << '\n';
     }
     return 0;
 }
 
 int two_alpha_dislocation_vs_time(int sign, int n) {
-    const int AVM = 10000;
+    const int N_of_average = 10000;
     int sum = 0, time = 0, ar = 0;
     double mean = 0;
     if (sign < 3){ar = n*n;}
     else {ar = n;}
     for (int k = 1; k < ar; k++) {
         sum = 0;
-        for (int j = 0; j < AVM; j++) {
+        for (int j = 0; j < N_of_average; j++) {
             int area[3600] = { 0 };
             creation(area, k, n, sign);
             time = process(area, n, sign);
             sum += time;
         }
-        mean = sum * 1.0 / AVM;
+        mean = sum * 1.0 / N_of_average;
         cout << mean << " " << '\n';
     }
     return 0;
