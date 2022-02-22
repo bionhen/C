@@ -166,7 +166,8 @@ int two_alpha_dislocation_vs_time(int sign, int n) {
     int sum = 0, time = 0, ar = 0;
     double mean = 0;
     if (sign < 3){ar = n*n;}
-    else {ar = n;}
+    else {ar = n;
+    }
     for (int k = 1; k < ar; k++) {
         sum = 0;
         for (int j = 0; j < N_of_average; j++) {
