@@ -38,7 +38,7 @@ int move(int area[], int a, int sign) {
             bin[i] = area[i];
         }
         for (int i = 0; i < a * a; i++) {
-            if (area[i] == 1) {
+            if (area[i] > 0) {
                 if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
                     area[i] = 0;
             }
