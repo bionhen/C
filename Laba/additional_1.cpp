@@ -32,37 +32,37 @@ int creation(int area[], int n, int a, int sign) {
 }
 
 int move(int area[], int a, int sign) {
+    int bin[3600] = {0};
+    for (int i = 0; i < 3600; i++){
+        bin[i] = area[i];
+    }
     if (sign < 3) { // движение для двумерного случая
-        int bin[3600] = {0};
-        for (int i = 0; i < 3600; i++){
-            bin[i] = area[i];
-        }
         for (int i = 0; i < a * a; i++) {
-            if (area[i] > 0) {
-                if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
+            if (area[i] == 1) {
+                if (i % a == 0 || i % a == a - 1 || i < a || i > a * a - a - 1)
                     area[i] = 0;
             }
         }
         for (int i = 0; i < a * a; i++) {
-            while (bin[i] >= 0) {
+            while(bin[i] >= 0) {
                 int step = random(4);
-                if (step == 0 && i + 1) {
+                if (step == 0) {
                     area[i + 1]++;
                     area[i]--;
                     bin[i]--;
                 }
-                if (step == 1 && area[i + a] == 0) {
-                    area[i + a]++;
+                if (step == 1) {
+                    area[i - 1]++;
                     area[i]--;
                     bin[i]--;
                 }
-                if (step == 2 && area[i - a] == 0) {
+                if (step == 2) {
                     area[i - a]++;
                     area[i]--;
                     bin[i]--;
                 }
-                if (step == 3 && area[i - 1] == 0) {
-                    area[i - 1]++;
+                if (step == 3) {
+                    area[i + a]++;
                     area[i]--;
                     bin[i]--;
                 }
@@ -70,16 +70,13 @@ int move(int area[], int a, int sign) {
         }
         for (int i = 0; i < a * a; i++) {
             if (area[i] > 0) {
-                if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
+                if (i % a == 0 || i % a == a - 1 || i < a || i > a * a - a - 1) {
                     area[i] = 0;
+                }
             }
         }
     }
     else { // движение для одномерного случая
-        int bin[3600] = { 0 };
-        for(int i = 0; i < 3600; i++){
-            bin[i] = area[i];
-        }
         for (int i = 0; i < a; i++) {
             if (area[i] == 1) {
                 if (i == 0 || i == a - 1)
@@ -103,8 +100,9 @@ int move(int area[], int a, int sign) {
         }
         for (int i = 0; i < a; i++) {
             if (area[i] > 0) {
-                if (i == 0 || i == a - 1)
+                if (i == 0 || i == a - 1) {
                     area[i] = 0;
+                }
             }
         }
     }
