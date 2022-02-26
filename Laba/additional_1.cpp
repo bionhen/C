@@ -19,7 +19,7 @@ int creation(int area[], int n, int a, int sign) {
             }
         }
     }
-    else{ // создание массива для одномерного случая
+    else { // создание массива для одномерного случая
         while (count < n) {
             int b = random(a);
             if (area[b] == 0) {
@@ -32,47 +32,47 @@ int creation(int area[], int n, int a, int sign) {
 }
 
 int move(int area[], int a, int sign) {
-    int bin[3600] = {0};
-    for (int i = 0; i < 3600; i++){
+    int bin[3600] = { 0 };
+    for (int i = 0; i < 3600; i++) {
         bin[i] = area[i];
     }
     if (sign < 3) { // движение для двумерного случая
         for (int i = 0; i < a * a; i++) {
-            if (area[i] == 1) {
-                if (i % a == 0 || i % a == a - 1 || i < a || i > a * a - a - 1)
-                    area[i] = 0;
-            }
-        }
-        for (int i = 0; i < a * a; i++) {
-            while(bin[i] >= 0) {
-                int step = random(4);
-                if (step == 0) {
-                    area[i + 1]++;
-                    area[i]--;
-                    bin[i]--;
-                }
-                if (step == 1) {
-                    area[i - 1]++;
-                    area[i]--;
-                    bin[i]--;
-                }
-                if (step == 2) {
-                    area[i - a]++;
-                    area[i]--;
-                    bin[i]--;
-                }
-                if (step == 3) {
-                    area[i + a]++;
-                    area[i]--;
-                    bin[i]--;
-                }
-            }
-        }
-        for (int i = 0; i < a * a; i++) {
             if (area[i] > 0) {
-                if (i % a == 0 || i % a == a - 1 || i < a || i > a * a - a - 1) {
+                if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1)
                     area[i] = 0;
+            }
+        }
+        for (int i = 0; i < a * a; i++) {
+            if (bin[i] > 0) {
+                while (bin[i] > 0) {
+                    int step = random(4);
+                    if (step == 0) {
+                        area[i + 1]++;
+                        area[i]--;
+                        bin[i]--;
+                    }
+                    if (step == 1 && area[i + a] == 0) {
+                        area[i + a]++;
+                        area[i]--;
+                        bin[i]--;
+                    }
+                    if (step == 2 && area[i - a] == 0) {
+                        area[i - a]++;
+                        area[i]--;
+                        bin[i]--;
+                    }
+                    if (step == 3 && area[i - 1] == 0) {
+                        area[i - 1]++;
+                        area[i]--;
+                        bin[i]--;
+                    }
                 }
+            }
+        }
+        for (int i = 0; i < a * a; i++) {
+            if (i % a == 0 || i < a || i > a * a - a - 1 || i % a == a - 1) {
+                area[i] = 0;
             }
         }
     }
@@ -84,25 +84,25 @@ int move(int area[], int a, int sign) {
             }
         }
         for (int i = 0; i < a; i++) {
-            while(bin[i] >= 0) {
-                int step = random(2);
-                if (step == 0) {
-                    area[i + 1]++;
-                    area[i]--;
-                    bin[i]--;
-                }
-                if (step == 1) {
-                    area[i - 1]++;
-                    area[i]--;
-                    bin[i]--;
+            if (bin[i] == 1) {
+                while (bin[i]) {
+                    int step = random(4);
+                    if (step == 0) {
+                        area[i + 1]++;
+                        area[i]--;
+                        bin[i]--;
+                    }
+                    if (step == 3) {
+                        area[i - 1]++;
+                        area[i]--;
+                        bin[i]--;
+                    }
                 }
             }
         }
         for (int i = 0; i < a; i++) {
-            if (area[i] > 0) {
-                if (i == 0 || i == a - 1) {
-                    area[i] = 0;
-                }
+            if (i == 0 || i == a - 1){
+                area[i] = 0;
             }
         }
     }
@@ -161,8 +161,9 @@ int two_alpha_dislocation_vs_time(int sign, int n) {
     const int N_of_average = 10000;
     int sum = 0, time = 0, ar = 0;
     double mean = 0;
-    if (sign < 3){ar = n*n;}
-    else {ar = n;
+    if (sign < 3) { ar = n * n; }
+    else {
+        ar = n;
     }
     for (int k = 1; k < ar; k++) {
         sum = 0;
