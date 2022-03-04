@@ -26,7 +26,7 @@ void swap(int arr[], int i, int j) {
 
 void iteration(int arr[], int n) {
     if ((n - 1) % 2 != 0) {
-        if (arr[n-1]>arr[(n-1)/2]) {
+        if (arr[n - 1]>arr[(n - 1) / 2]) {
             swap(arr, n - 1, (n - 1) / 2);
         }
     }
