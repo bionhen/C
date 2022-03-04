@@ -3,16 +3,13 @@
 using namespace std;
 
 int func() {
-    int a, n = 0;
+    int a;
     cin >> a;
-    n++;
     if (a == 0) {
         return 0;
     }
-    if (n % 2 == 1) {
-        cout << '\n' << a;
-    }
     func();
+    cout  << a << '\n';
     return 0;
 }
 
