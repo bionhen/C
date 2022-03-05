@@ -39,7 +39,6 @@ void iteration(int arr[], int n) {
         }
     }
     swap(arr, 0, n-1);
-
 }
 
 void pyramid(int arr[], int n) {
