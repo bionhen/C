@@ -149,4 +149,7 @@ int main(){
         cout << mean_fma(psi, pdf, dv, size) << " ";
         cout << mean_double(psi, pdf, dv, size) << '\n';
     }
+    delete[] psi;
+    delete[] pdf;
+    return 0;
 }
