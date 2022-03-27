@@ -4,7 +4,7 @@ using namespace std;
 
 int* my_slightly_dumb_reallocation(int* source, unsigned int n_old, unsigned int n_new) {
     int* a = new int[n_new];
-    if (source != NULL) {
+    if (source != nullptr) {
         for (int i = 0; i < n_new; i++) {
             if (i < n_old) {
                 a[i] = source[i];
@@ -18,7 +18,7 @@ int* my_slightly_dumb_reallocation(int* source, unsigned int n_old, unsigned int
 int main() {
     unsigned int n, i;
     cin >> n;
-    int* a = my_slightly_dumb_reallocation(NULL, 0, n / 2);
+    int* a = my_slightly_dumb_reallocation(nullptr, 0, n / 2);
     for (i = 0; i < n / 2; i++)
         cin >> a[i];
     a = my_slightly_dumb_reallocation(a, n / 2, n);

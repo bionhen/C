@@ -2,13 +2,14 @@
 
 using namespace std;
 
-void creation(int n, int arr[]) {
+int *creation(int n) {
+    int *matrix = new int[n*n];
     int x = 0;
     for (int i = 0; i < n * n; i++) {
         cin >> x;
-        arr[i] = x;
+        matrix[i] = x;
     }
-    return;
+    return matrix;
 }
 
 int pow_minus_one(int k) {
@@ -40,11 +41,11 @@ int det(int n, int* arr) {
     delete[] arr_1;
     return d;
 }
+
 int main(){
     int n = 0;
     cin >> n;
-    int *matrix = new int[n*n];
-    creation(n, matrix);
+    int *matrix = creation(n);
     cout << det(n, matrix);
 }
 
