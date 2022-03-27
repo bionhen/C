@@ -12,7 +12,7 @@ int func(int N) {
     }
     for (int idx = 0; idx < N; idx++) {
         if (arr[idx] < 0) {
-            for (int i = idx + 1; i < d + idx + 1; i++) {
+            for (int i = idx + 1; i < d + idx; i++) {
                 if (arr[i] == -arr[idx]) {
                     d = i - idx ;
                     break;

@@ -3,7 +3,7 @@
 using namespace std;
 
 void my_personal_swap(int* a, int* b) {
-    if (a && b) {
+    if (a != nullptr && b!= nullptr) {
         int tmp = *a;
         *a = *b;
         *b = tmp;

@@ -40,4 +40,11 @@ int det(int n, int* arr) {
     delete[] arr_1;
     return d;
 }
+int main(){
+    int n = 0;
+    cin >> n;
+    int *matrix = new int[n*n];
+    creation(n, matrix);
+    cout << det(n, matrix);
+}
 
