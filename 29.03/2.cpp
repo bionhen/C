@@ -33,6 +33,9 @@ void add_mark(STUDENT& s, int mark) {
     for (int i = 0; i < s.N; i++) {
         sum += s.SES[i];
     }
+    if (sum / s.N == 4.5){
+        return;
+    }
     while (d < check) {
         N++;
         d = (sum + N * mark) / (N + s.N);
