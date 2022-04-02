@@ -17,6 +17,7 @@ void data_in(STUDENT STUD1[]) {
             cin >> STUD1[i].SES[j];
         }
     }
+    return;
 }
 
 void swap(STUDENT STUD[10], int i, int j) {
@@ -58,6 +59,7 @@ void data_out(STUDENT STUD1[10]) {
     for (int i = 0; i < 10; i++) {
         cout << STUD1[i].NAME_1 << " " << STUD1[i].NAME_2 << '\n';
     }
+    return;
 }
 
 int main(){
@@ -66,4 +68,5 @@ int main(){
     sort(STUD1);
     control(STUD1);
     data_out(STUD1);
+    return 0;
 }
