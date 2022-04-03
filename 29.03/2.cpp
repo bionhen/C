@@ -78,5 +78,6 @@ int main(){
     data_in(STUD1);
     improve_marks(STUD1);
     data_out(STUD1);
+    return 0;
 }
 

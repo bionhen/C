@@ -25,6 +25,7 @@ void swap(STUDENT STUD[10], int i, int j) {
     tmp = STUD[i];
     STUD[i] = STUD[j];
     STUD[j] = tmp;
+    return;
 }
 
 
