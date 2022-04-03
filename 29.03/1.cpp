@@ -44,7 +44,7 @@ void control(STUDENT STUD1[10]) {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 5; j++) {
             if (STUD1[i].SES[j] == 2) {
-                cout << STUD1[i].NAME_1 << " " << STUD1[i].NAME_2 << STUD1[i].GROUP<<'\n';
+                cout << STUD1[i].NAME_1 << " " << STUD1[i].NAME_2 << " " <<STUD1[i].GROUP<<'\n';
                 count++;
                 break;
             }
