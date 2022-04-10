@@ -84,7 +84,9 @@ void delete_key(Element*& List, int k) {
     tmp = List;
     while (tmp->next != nullptr) {
         if (tmp->next->key == k) {
+            Element* tmp_1 = tmp->next;
             tmp->next = tmp->next->next;
+            delete tmp_1;
         }
         else {
             tmp = tmp->next;
