@@ -21,6 +21,7 @@ int choose(int*& arr, int P, int n) {
             P = P - (P / arr[i])*arr[i];
         }
     }
+    delete[] arr;
     return 0;
 }
 
