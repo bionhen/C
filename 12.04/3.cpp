@@ -32,7 +32,6 @@ void distribution(item*& List, int n, int sum_mass) {
             }
         }
     }
-    int alpha = List[0].alpha;
     cout << '\n';
     for (int i = 0; i < n; i++) {
         if (List[i].mass <= sum_mass) {
