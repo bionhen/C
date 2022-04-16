@@ -40,8 +40,8 @@ int search(int**& matrix, int n, int*& arr, int k, int f) {
                 continue;
             }
             if (minim == 0) {
-                 minim = matrix[i][k];
-                 arr[f] = i - 1;
+                minim = matrix[i][k];
+                arr[f] = i - 1;
             }
             if (matrix[i][k] < minim) {
                 minim = matrix[i][k];
@@ -78,10 +78,6 @@ void way(int**& matrix, int n, int *& arr) {
     arr[0] = -1;
     for (int f = 1; f < n; f++) {
         search(matrix, n, arr, arr[f - 1], f);
-        for (int l = 0; l < n; l++) {
-            cout << arr[l] << " ";
-        }
-        cout << '\n';
     }
     arr[n] = -1;
     return;
