@@ -94,7 +94,7 @@ void data_out(int**& matrix, int n, int*& arr){
 int main() {
     int** matrix = nullptr;
     int* arr = nullptr;
-    int n = data_in(matrix, arr); // вводится верхнетреуголная (без главной диагонали) матрица порядка n-1
+    int n = data_in(matrix, arr); // вводится верхнетреуголная матрица порядка n-1 (нули не вводятся) (n на n без главной диагонали)
     way(matrix, n, arr);
     data_out(matrix, n, arr);
     return 0;
