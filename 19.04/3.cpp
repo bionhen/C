@@ -49,24 +49,6 @@ int data_in(int**& arr) {
     return n;
 }
 
-int min(int a, int b) {
-    if (b > a) {
-        return a;
-    }
-    else {
-        return b;
-    }
-}
-
-int abs_1(int a) {
-    if (a < 0) {
-        return -a;
-    }
-    else {
-        return a;
-    }
-}
-
 int way(int**& arr, int pos_x, int pos_y, int & check, int**& arr_check) {
     int ch_1 = 0;
     if (arr[pos_y + 1][pos_x] == 0) {
