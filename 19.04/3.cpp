@@ -15,29 +15,12 @@ int data_in(int**& arr) {
     }
     for (int i = 0; i < n + 1; i++) {
         cin >> a[0]>>a[1];
-        if (a[0] == 'a') {
-            pos_1 = 0;
-        }
-        if (a[0] == 'b') {
-            pos_1 = 1;
-        }
-        if (a[0] == 'c') {
-            pos_1 = 2;
-        }
-        if (a[0] == 'd') {
-            pos_1 = 3;
-        }
-        if (a[0] == 'e') {
-            pos_1 = 4;
-        }
-        if (a[0] == 'f') {
-            pos_1 = 5;
-        }
-        if (a[0] == 'g') {
-            pos_1 = 6;
-        }
-        if (a[0] == 'h') {
-            pos_1 = 7;
+
+        for (int j = 0; j < 8; j++) {
+           if (a[0] - 'a' == j) {
+               pos_1 = j;
+               break;
+            }
         }
         if (i < n) {
             arr[a[1] - 1 - '0'][pos_1] = 1;
@@ -105,4 +88,5 @@ int main() {
     int** arr = nullptr;
     int n = data_in(arr);
     cout << search(arr);
+    return 0;
 }
