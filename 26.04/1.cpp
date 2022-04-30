@@ -25,7 +25,7 @@ void add_tree(BinaryTree*& root, int a) {
     }
 }
 
-void data_in(BinaryTree* &root) {// если введенный совпадает с уже существующим, то продолжить!
+void data_in(BinaryTree* &root) {
     int a = 1;
     while (a != 0) {
         cin >> a;
@@ -58,4 +58,11 @@ void delete_tree(BinaryTree* root) {
         delete_tree(root->right);
         delete root;
     }
+}
+
+int main() {
+    BinaryTree* root = nullptr;
+    data_in(root);
+    data_out(root);
+    delete_tree(root);
 }
