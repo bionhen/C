@@ -9,7 +9,6 @@ struct BinaryTree {
 };
 
 struct stacking {
-    stacking* back;
     stacking* forward;
     BinaryTree* link_tree;
 };
@@ -44,92 +43,77 @@ void data_in(BinaryTree*& root) {
     return;
 }
 
-void add_jam(BinaryTree* root, stacking*& queue_last) {
-    if (root != nullptr) {
-        if (root->left != nullptr && root->right != nullptr) {
-            stacking* tmp_1 = new stacking;
-            //if (root->left == nullptr) {
-            //    tmp_1->link_tree
-            //}
-            tmp_1->link_tree = root->left;
-            stacking* tmp_2 = new stacking;
-            tmp_2->link_tree = root->right;
-            tmp_1->forward = tmp_2;
-            tmp_2->back = tmp_1;
-            queue_last->forward = tmp_1;
-            tmp_1->back = queue_last;
-            queue_last = tmp_2;
-        }
-        if (root->right != nullptr && root->left == nullptr) {
-            stacking* tmp_2 = new stacking;
-            tmp_2->link_tree = root->right;
-            queue_last->forward = tmp_2;
-            tmp_2->back = queue_last;
-            queue_last = tmp_2;
-        }
-        if (root->left != nullptr && root->right == nullptr) {
-            stacking* tmp_2 = new stacking;
-            tmp_2->link_tree = root->left;
-            queue_last->forward = tmp_2;
-            tmp_2->back = queue_last;
-            queue_last = tmp_2;
-        }
-        //stacking* tmp_3 = new stacking;
-        //tmp_3->forward = nullptr;
-        //queue_last->forward = tmp_3;
-        //tmp_3->back = queue_last;
-        //tmp_3->link_tree = nullptr;
-    }
-}
-
-void delete_jam(BinaryTree* root, stacking*& queue_first) {
-    stacking* tmp = queue_first;
-    queue_first = queue_first->forward;
-    delete tmp;
-}
-
-void level_iteration(BinaryTree* root, stacking*& queue_first, stacking*& queue_last) {
+void add_jam(BinaryTree* root, stacking** queue_first) {
+    stacking* current = *queue_first;
+    stacking* previos = nullptr;
+    stacking* new_elem = new stacking;
     if (root == nullptr) {
-        return;
+        BinaryTree* n = new BinaryTree;
+        n->data = 0;
+        n->left = n->right = nullptr;
+        new_elem->link_tree = n;
     }
-    stacking* tmp = queue_first;
-    stacking* tmp_last = queue_last;
-    //cout << queue_last->back->forward<<"aa";
-    //cout << tmp_last->back->forward;
-    while (tmp != nullptr) { //!=tmp_last(?)
-        //cout << "AA"<<tmp << tmp_last << tmp->link_tree->data << tmp_last->link_tree->data << "AA"<<'\n';
-        //cout << queue_first->forward->link_tree->data;
-        cout << tmp->link_tree->data << " ";
-        if (tmp!=nullptr && tmp->link_tree != nullptr) {
-            add_jam(tmp->link_tree, queue_last);
-        }
-        //cout << queue_last->back->link_tree->data;
-        //cout << tmp_last->back->forward->link_tree->data;
-        if (tmp->link_tree->data == tmp_last->back->link_tree->data) {
-            break;
-        }
-        tmp = tmp->forward;
+    else {
+        new_elem->link_tree = root;
     }
-    queue_first = tmp_last;//->back->forward;
-    //cout << '\n' << queue_first;
+    new_elem->forward = nullptr;
+    while (current != nullptr) {
+        previos = current;
+        current = current->forward;
+    }
+    if (previos != nullptr) {
+        previos->forward = new_elem;
+    }
+    else {
+        *queue_first = new_elem;
+    }
 }
 
-void data_out(BinaryTree* root) {
-    if (root == nullptr) {
-        return;
-    }
-    stacking* queue_first = new stacking;
-    stacking* queue_last = new stacking;
-    queue_first->link_tree = root;
-    queue_first->forward = queue_last;
-    queue_first->back = nullptr;
-    queue_last->back = queue_first;
-    queue_last->link_tree = root;
-    while (true) {
-        level_iteration(root, queue_first, queue_last);
-        cout << '\n';
+BinaryTree* out(stacking** queue_first) {
+    stacking* old = *queue_first;
+    BinaryTree * old_tree = nullptr;
+    old_tree = old->link_tree;
+    *queue_first = (*queue_first)->forward;
+    delete old;
+    return old_tree;
+}
+
+void queue_out(BinaryTree* root) {
+    stacking* queue_first = nullptr;
+    int level = 0;
+    int count_zero = 0;
+    int count_elements = 0;
+    add_jam(root, &queue_first);
+    while (queue_first != nullptr) {
+        root = out(&queue_first);
+        if (root->data == 0) {
+            count_zero++;
+        }
+        else {
+            count_zero = 0;
+        }
+        count_elements++;
+        if (root->data != 0) {
+            cout << root->data << " ";
+        }
+        else{
+            cout << "  ";
+        }
+        if (pow(2, level) == count_elements) {
+            level++;
+            cout << '\n';
+            if (count_elements = count_zero) {
+                break;
+            }
+            count_elements = 0;
+        }
+        add_jam(root->left, &queue_first);
+        add_jam(root->right, &queue_first);
     }
 }
+
+
+
 
 void delete_tree(BinaryTree* root) {
     if (root == nullptr) {
@@ -146,6 +130,6 @@ void delete_tree(BinaryTree* root) {
 int main() {
     BinaryTree* root = nullptr;
     data_in(root);
-    data_out(root);
+    queue_out(root);
     delete_tree(root);
 }
