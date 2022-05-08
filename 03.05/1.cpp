@@ -106,6 +106,7 @@ void queue_out(BinaryTree* root) {
                 break;
             }
             count_elements = 0;
+            count_zero = 0;
         }
         add_jam(root->left, &queue_first);
         add_jam(root->right, &queue_first);
