@@ -102,7 +102,7 @@ void queue_out(BinaryTree* root) {
         if (pow(2, level) == count_elements) {
             level++;
             cout << '\n';
-            if (count_elements = count_zero) {
+            if (count_elements == count_zero) {
                 break;
             }
             count_elements = 0;
