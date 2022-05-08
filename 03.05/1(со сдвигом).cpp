@@ -106,7 +106,7 @@ void queue_out(BinaryTree* root) {
             cout << root->data<<" ";
         }
         else{
-            cout << "  ";
+            cout << "-  ";
         }
         if (pow(2, level) == count_elements) {
             level++;
